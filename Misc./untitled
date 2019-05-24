@@ -1,0 +1,40 @@
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
+
+void print_array(int dim,int M[][dim]){
+    int i,j;
+    for(i=0;i<dim;i++){
+        for(j=0;j<dim;j++){
+            printf("%d\t",M[i][j]);
+        }
+        printf("\n");
+    }
+}
+int main() {
+    int base =1; 
+    char str[200001];
+    int i,j;
+    int dim;
+    int M[dim][dim];
+    scanf("%s",str);
+    dim = strlen(str);
+    for(i=0;i< dim; i++){
+        for(j=0;j< dim-i;j++){
+            if(i ==0){
+                M[i][j] = (int)str[i];
+            }
+            else{
+                M[i][j] = M[i-1][j]*base + M[i-1][j+1];
+            }
+            
+        }
+        base *= 10;
+    }
+    print_array(dim,M);
+    return 0;
+}
